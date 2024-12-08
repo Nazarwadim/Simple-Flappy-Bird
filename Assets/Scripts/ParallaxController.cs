@@ -17,7 +17,7 @@ public class ParallaxController : MonoBehaviour
     void Start()
     {
         _length = GetComponent<SpriteRenderer>().bounds.size.x;
-        _length -= 0.01f;
+        _length -= 0.0105f;
         _prevCamera = _camera.transform.position.x;
         if (_secondImageTransform != null)
         {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PipeGenerator : MonoBehaviour
@@ -9,7 +8,6 @@ public class PipeGenerator : MonoBehaviour
 
     [SerializeField] private Pipe _prefab;
     [SerializeField] private int _seed;
-
 
     [SerializeField, Min(0f)] private float _minHole = 2;
     [SerializeField, Min(0f)] private float _maxHole = 5;
@@ -22,7 +20,7 @@ public class PipeGenerator : MonoBehaviour
 
     private System.Random _random;
     private bool _isCourutineWorking;
-    private bool _isWorking;
+    [SerializeField] private bool _isWorking;
 
     public bool IsWorking
     {
@@ -58,10 +56,8 @@ public class PipeGenerator : MonoBehaviour
         _random = new System.Random(_seed);
     }
 
-
-    private void Start()
-    {
-        IsWorking = true;
+    private void FixedUpdate() {
+        IsWorking = _isWorking; // For enable/disable from editor.
     }
 
     private IEnumerator PipeGenerateCoroutine()

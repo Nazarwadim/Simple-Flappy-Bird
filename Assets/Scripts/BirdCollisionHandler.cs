@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class BirdCollisionHandler : MonoBehaviour
 {
-    public event Action Collided;
+    public event Action CollidedWithObstacle;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        gameObject.SetActive(false);
-        Collided?.Invoke();
+        CollidedWithObstacle?.Invoke();
     }
 }
