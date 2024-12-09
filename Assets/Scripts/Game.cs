@@ -19,7 +19,8 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        OnStart();
+        _pipeGenerator.IsWorking = false;
+        OnMainMenu();
     }
 
     private void OnEnable()
@@ -39,7 +40,7 @@ public class Game : MonoBehaviour
         _pipeGenerator.IsWorking = false;
     }
 
-    private void OnMainMenu()
+    public void OnMainMenu()
     {
         _paralaxes.ResetToStartPosition();
         ChangeState(GameState.MainMenu);
@@ -50,9 +51,8 @@ public class Game : MonoBehaviour
         ChangeState(GameState.MainMenu);
     }
 
-    private void OnStart()
+    public void OnStart()
     {
-        _paralaxes.ResetToStartPosition();
         ChangeState(GameState.Play);
         _pipeGenerator.Clear();
         _pipeGenerator.IsWorking = true;

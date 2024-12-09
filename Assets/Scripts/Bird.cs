@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BirdMovement), typeof(Score))]
+[RequireComponent(typeof(BirdMovement))]
 public class Bird : MonoBehaviour
 {
     [SerializeField] private Transform _startPosition;
@@ -19,13 +19,11 @@ public class Bird : MonoBehaviour
     {
         switch (state)
         {
-            case GameState.Resume:
-                _birdMovement.CanMove = true;
-                break;
             case GameState.Play:
                 _score.ResetScore();
                 _birdMovement.CanMove = true;
                 _birdMovement.transform.position = _startPosition.position;
+                _birdMovement.transform.rotation = _startPosition.rotation;
                 break;
             case GameState.Died:
                 _birdMovement.CanMove = false;
@@ -33,6 +31,7 @@ public class Bird : MonoBehaviour
             case GameState.MainMenu:
                 _birdMovement.CanMove = false;
                 _birdMovement.transform.position = _startPosition.position;
+                _birdMovement.transform.rotation = _startPosition.rotation;
                 break;
             case GameState.Pause:
                 _birdMovement.CanMove = false;

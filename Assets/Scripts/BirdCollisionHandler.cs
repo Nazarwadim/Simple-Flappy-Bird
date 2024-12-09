@@ -7,7 +7,6 @@ public class BirdCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Reset");
         CollidedWithObstacle?.Invoke();
     }
 }

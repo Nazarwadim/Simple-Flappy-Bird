@@ -1,17 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private Canvas _playButton;
+    [SerializeField] private Button _playButton;
     [SerializeField] private Canvas _died;
-    [SerializeField] private Canvas _pauseMenu;
     [SerializeField] private Canvas _mainMenu;
 
     private void DisableCanvases()
     {
-        _playButton.enabled = false;
+        _playButton.gameObject.SetActive(false);
         _died.enabled = false;
-        _pauseMenu.enabled = false;
         _mainMenu.enabled = false;
     }
 
@@ -20,9 +19,8 @@ public class UI : MonoBehaviour
         switch (state)
         {
             case GameState.Play:
-            case GameState.Resume:
                 DisableCanvases();
-                _playButton.enabled = true;
+                _playButton.gameObject.SetActive(true);
                 break;
             case GameState.Died:
                 DisableCanvases();
@@ -32,11 +30,6 @@ public class UI : MonoBehaviour
                 DisableCanvases();
                 _mainMenu.enabled = true;
                 break;
-            case GameState.Pause:
-                DisableCanvases();
-                _pauseMenu.enabled = true;
-                break;
-
         }
     }
 }

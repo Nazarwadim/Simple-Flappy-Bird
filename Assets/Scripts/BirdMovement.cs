@@ -35,7 +35,6 @@ public class BirdMovement : MonoBehaviour
         _animation = GetComponent<BirdAnimation>();
         _rigid = GetComponent<Rigidbody2D>();
         _rigid.velocity = new Vector2(_speed, 0);
-        //CanMove = false;
     }
 
 
