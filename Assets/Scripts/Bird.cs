@@ -6,19 +6,22 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     [SerializeField] private Transform _startPosition;
+    [SerializeField] private Score _score;
 
     private BirdMovement _birdMovement;
-    private Score _score;
-    void OnEnable()
+    
+    private void OnEnable()
     {
         _birdMovement = GetComponent<BirdMovement>();
-        _score = GetComponent<Score>();
     }
 
     public void OnGameStateChanged(GameState state)
     {
         switch (state)
         {
+            case GameState.Resume:
+                _birdMovement.CanMove = true;
+                break;
             case GameState.Play:
                 _score.ResetScore();
                 _birdMovement.CanMove = true;
@@ -34,7 +37,6 @@ public class Bird : MonoBehaviour
             case GameState.Pause:
                 _birdMovement.CanMove = false;
                 break;
-            
         }
     }
 }

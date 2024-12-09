@@ -20,6 +20,7 @@ public class UI : MonoBehaviour
         switch (state)
         {
             case GameState.Play:
+            case GameState.Resume:
                 DisableCanvases();
                 _playButton.enabled = true;
                 break;

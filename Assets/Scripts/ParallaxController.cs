@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -14,23 +15,37 @@ public class ParallaxController : MonoBehaviour
 
     private float _length;
     private float _prevCamera;
-    void Start()
+
+    private Vector3 _startPosition;
+
+    public void ResetToStartPosition()
+    {
+        if (_secondImageTransform != null)
+        {
+            transform.position = _startPosition;
+            _secondImageTransform.position = new Vector3(transform.position.x + _length, transform.position.y, transform.position.z);
+        }
+    }
+
+    private void Awake()
     {
         _length = GetComponent<SpriteRenderer>().bounds.size.x;
         _length -= 0.0105f;
         _prevCamera = _camera.transform.position.x;
         if (_secondImageTransform != null)
         {
+            _startPosition = transform.position;
             _secondImageTransform.position = new Vector3(transform.position.x + _length, transform.position.y, transform.position.z);
         }
     }
 
-    void Update()
+    private void Update()
     {
         float cameraPosition = _camera.transform.position.x;
         float speed = cameraPosition - _prevCamera;
         transform.position = new Vector3(transform.position.x + _paralaxValue * speed, transform.position.y, transform.position.z);
-        if(cameraPosition > transform.position.x + _length + _offset) {
+        if (cameraPosition > transform.position.x + _length + _offset)
+        {
             transform.position = new Vector3(transform.position.x + _repeatCount * _length, transform.position.y, transform.position.z);
         }
         _prevCamera = _camera.transform.position.x;
