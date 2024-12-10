@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BirdMovement))]
+[RequireComponent(typeof(BirdMovement), typeof(BirdCollisionHandler))]
 public class Bird : MonoBehaviour
 {
     [SerializeField] private Transform _startPosition;
     [SerializeField] private Score _score;
 
     private BirdMovement _birdMovement;
-    
+    private BirdCollisionHandler _birdCollisionHandler;
+
     private void OnEnable()
     {
+        _birdCollisionHandler = GetComponent<BirdCollisionHandler>();
         _birdMovement = GetComponent<BirdMovement>();
     }
 
@@ -21,12 +23,15 @@ public class Bird : MonoBehaviour
         {
             case GameState.Play:
                 _score.ResetScore();
+                _birdCollisionHandler.CanCollide = true;
                 _birdMovement.CanMove = true;
                 _birdMovement.transform.position = _startPosition.position;
                 _birdMovement.transform.rotation = _startPosition.rotation;
                 break;
             case GameState.Died:
-                _birdMovement.CanMove = false;
+                _birdCollisionHandler.CanCollide = false;
+                _birdMovement.Die();
+                
                 break;
             case GameState.MainMenu:
                 _birdMovement.CanMove = false;

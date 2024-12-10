@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BirdAnimation), typeof(BirdCollisionHandler))]
@@ -30,6 +32,24 @@ public class BirdMovement : MonoBehaviour
         }
     }
 
+    public void Die() {
+        StartCoroutine(DieCoroutine());
+    }
+
+    private IEnumerator DieCoroutine() {
+        _rigid.velocity = new Vector2(0, 0);
+        _rigid.gravityScale = 0;
+        _rigid.angularVelocity = 0;
+        _rigid.freezeRotation = true;
+        yield return new WaitForSeconds(0.3f);
+        _rigid.gravityScale = 1;
+        yield return new WaitForSeconds(0.7f);
+        _rigid.freezeRotation = false;
+    }
+
+
+    public event Action Jumping;
+    
     private void OnEnable()
     {
         _animation = GetComponent<BirdAnimation>();
@@ -37,12 +57,12 @@ public class BirdMovement : MonoBehaviour
         _rigid.velocity = new Vector2(_speed, 0);
     }
 
-
     private void Update()
     {
         if (CanJump())
         {
             _rigid.velocity = new Vector2(_speed, _speedJump);
+            Jumping?.Invoke();
         }
     }
 

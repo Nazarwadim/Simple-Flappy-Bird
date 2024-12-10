@@ -5,6 +5,8 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Button _playButton;
     [SerializeField] private Canvas _died;
+    [SerializeField] private Animator _diedAnimator;
+
     [SerializeField] private Canvas _mainMenu;
 
     private void DisableCanvases()
@@ -23,6 +25,7 @@ public class UI : MonoBehaviour
                 _playButton.gameObject.SetActive(true);
                 break;
             case GameState.Died:
+                _diedAnimator.SetTrigger("Died");
                 DisableCanvases();
                 _died.enabled = true;
                 break;
