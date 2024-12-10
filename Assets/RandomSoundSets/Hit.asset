@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7774adc4438f37954b7ad6472dac14d5, type: 3}
   m_Name: Hit
   m_EditorClassIdentifier: 
-  _name: 
-  _audioClips: []
+  _name: Hit
+  _audioClips:
+  - {fileID: 8300000, guid: 84fbce353053831559fb9b3e1de981ef, type: 3}
+  - {fileID: 8300000, guid: 5a86838cc8cc838598791567441658c4, type: 3}

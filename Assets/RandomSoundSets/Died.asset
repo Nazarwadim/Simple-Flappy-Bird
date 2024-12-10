@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Died
   m_EditorClassIdentifier: 
   _name: Died
-  _audioClips: []
+  _audioClips:
+  - {fileID: 8300000, guid: 082f7845a1f2038d583418dd89d0c0a1, type: 3}
+  - {fileID: 8300000, guid: bafe471706655682283a92ff2f113358, type: 3}

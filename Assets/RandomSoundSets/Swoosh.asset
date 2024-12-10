@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7774adc4438f37954b7ad6472dac14d5, type: 3}
   m_Name: Swoosh
   m_EditorClassIdentifier: 
-  _name: 
-  _audioClips: []
+  _name: Swoosh
+  _audioClips:
+  - {fileID: 8300000, guid: 655dd4b08f4f51ce9896956813c53839, type: 3}
+  - {fileID: 8300000, guid: 27cc106fe7450f5b8a27ca8f81bd7417, type: 3}
