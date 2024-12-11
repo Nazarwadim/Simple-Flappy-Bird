@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BirdMovement), typeof(BirdCollisionHandler))]
@@ -31,6 +29,7 @@ public class Bird : MonoBehaviour
             case GameState.Died:
                 _birdCollisionHandler.CanCollide = false;
                 _birdMovement.Die();
+                _birdMovement.enabled = false;
                 
                 break;
             case GameState.MainMenu:
